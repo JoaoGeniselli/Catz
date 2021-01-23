@@ -3,10 +3,11 @@ package com.learning.catz.facts
 import androidx.lifecycle.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FactsViewModel : ViewModel(), LifecycleObserver {
-
-    private val storage = FactsRepository()
+class FactsViewModel @Inject constructor(
+    private val repository: FactsRepository
+) : ViewModel(), LifecycleObserver {
 
     private val _facts = MutableLiveData<List<Fact>>()
     val facts: LiveData<List<Fact>> get() = _facts
@@ -19,7 +20,7 @@ class FactsViewModel : ViewModel(), LifecycleObserver {
         _loading.value = true
         viewModelScope.launch {
             _loading.value = false
-            storage.facts.collect { _facts.value = it }
+            repository.facts.collect { _facts.value = it }
         }
     }
 }

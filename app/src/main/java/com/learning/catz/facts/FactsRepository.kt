@@ -1,17 +1,17 @@
 package com.learning.catz.facts
 
-import com.learning.catz.network.CatzAPI
-import com.learning.catz.network.FactResponse
 import com.learning.catz.commons.APIDateParser
 import com.learning.catz.network.AnimalType
-import com.learning.catz.network.RetrofitClient
+import com.learning.catz.network.CatzAPI
+import com.learning.catz.network.FactResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class FactsRepository {
-
-    private val api: CatzAPI by lazy { RetrofitClient.catzAPI }
-    private val apiDateParser = APIDateParser()
+class FactsRepository @Inject constructor(
+    private val api: CatzAPI,
+    private val apiDateParser: APIDateParser
+) {
 
     val facts: Flow<List<Fact>> = flow {
         val response = api.fetchFacts(

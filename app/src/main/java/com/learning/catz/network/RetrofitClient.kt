@@ -1,8 +1,14 @@
 package com.learning.catz.network
 
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+@Module
+@InstallIn(ActivityComponent::class)
 object RetrofitClient {
 
     private val retrofit: Retrofit by lazy {
@@ -12,6 +18,6 @@ object RetrofitClient {
             .build()
     }
 
-    val catzAPI: CatzAPI by lazy { retrofit.create(
-        CatzAPI::class.java) }
+    @Provides
+    fun getCatzAPI(): CatzAPI = retrofit.create(CatzAPI::class.java)
 }

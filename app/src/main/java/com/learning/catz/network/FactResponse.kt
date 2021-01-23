@@ -8,5 +8,5 @@ data class FactResponse(
     @SerializedName("text")
     val content: String?,
     @SerializedName("updatedAt")
-    val updatedDate: String? // example: "2018-01-04T01:10:54.673Z"
+    val updatedDate: String?
 )

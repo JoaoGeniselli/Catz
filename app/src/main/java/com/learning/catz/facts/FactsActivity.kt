@@ -8,13 +8,20 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.catz.databinding.ActivityFactsBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FactsActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { FactsViewModel() }
+    @Inject
+    lateinit var viewModel: FactsViewModel
+
+    @Inject
+    lateinit var adapter: FactsAdapter
+
     private lateinit var binding: ActivityFactsBinding
-    private val adapter by lazy { FactsAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
