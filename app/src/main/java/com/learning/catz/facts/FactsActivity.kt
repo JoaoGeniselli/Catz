@@ -42,17 +42,19 @@ class FactsActivity : AppCompatActivity() {
 
     private fun bindToViewModel() {
         lifecycle.addObserver(viewModel)
-        lifecycleScope.launch {
-            with(viewModel) {
-                facts.observe(
-                    this@FactsActivity,
-                    Observer { updateFactsList(it) }
-                )
-                loading.observe(
-                    this@FactsActivity,
-                    Observer { updateLoadingState(it) }
-                )
-            }
+        with(viewModel) {
+            facts.observe(
+                this@FactsActivity,
+                Observer { updateFactsList(it) }
+            )
+            startLoading.observe(
+                this@FactsActivity,
+                Observer { startLoading() }
+            )
+            stopLoading.observe(
+                this@FactsActivity,
+                Observer { stopLoading() }
+            )
         }
     }
 
