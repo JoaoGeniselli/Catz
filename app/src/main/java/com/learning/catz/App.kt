@@ -2,6 +2,7 @@ package com.learning.catz
 
 import android.app.Application
 import android.content.Context
+import com.learning.catz.di.commonsModule
 import com.learning.catz.di.factsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -14,7 +15,8 @@ class App : Application() {
         startKoin {
             androidContext(this@App)
             modules(listOf(
-                factsModule
+                factsModule,
+                commonsModule
             ))
         }
     }
