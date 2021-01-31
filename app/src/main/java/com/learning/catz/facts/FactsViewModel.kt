@@ -5,9 +5,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class FactsViewModel : ViewModel(), LifecycleObserver {
-
-    private val storage = FactsRepository()
+class FactsViewModel(
+    private val storage: FactsRepository
+) : ViewModel(), LifecycleObserver {
 
     private val _facts = MutableLiveData<List<Fact>>()
     val facts: LiveData<List<Fact>> get() = _facts

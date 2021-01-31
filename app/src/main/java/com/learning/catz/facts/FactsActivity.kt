@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.catz.databinding.ActivityFactsBinding
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FactsActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { FactsViewModel() }
+    private val viewModel: FactsViewModel by viewModel()
+    private val adapter: FactsAdapter by inject()
     private lateinit var binding: ActivityFactsBinding
-    private val adapter by lazy { FactsAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

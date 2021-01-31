@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.learning.catz.commons.DateFormatter
 import com.learning.catz.databinding.RowTitleSubtitleBinding
 
-class FactsAdapter : ListAdapter<Fact, TitleAndSubtitleViewHolder>(FactDiffCallback()) {
+class FactsAdapter(
+    factDiffCallback: FactDiffCallback
+) : ListAdapter<Fact, TitleAndSubtitleViewHolder>(factDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TitleAndSubtitleViewHolder {
         val binding = RowTitleSubtitleBinding.inflate(
