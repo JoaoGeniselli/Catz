@@ -4,15 +4,13 @@ import com.learning.catz.commons.APIDateParser
 import com.learning.catz.network.AnimalType
 import com.learning.catz.network.CatzAPI
 import com.learning.catz.network.FactResponse
-import com.learning.catz.network.RetrofitClient
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class FactsRepository(
-    private val apiDateParser: APIDateParser
+    private val apiDateParser: APIDateParser,
+    private val api: CatzAPI
 ) {
-
-    private val api: CatzAPI by lazy { RetrofitClient.catzAPI }
 
     val facts: Flow<List<Fact>> = flow {
         val response = api.fetchFacts(

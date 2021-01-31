@@ -13,10 +13,10 @@ val factsModule = module {
     }
 
     single {
-        FactsRepository(get())
+        FactsRepository(get(), get())
     }
 
-    factory{
+    factory {
         FactsAdapter(get(), get())
     }
 
