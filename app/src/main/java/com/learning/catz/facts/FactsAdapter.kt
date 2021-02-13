@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.ListAdapter
 import com.learning.catz.commons.DateFormatter
 import com.learning.catz.databinding.RowTitleSubtitleBinding
 
-class FactsAdapter : ListAdapter<Fact, TitleAndSubtitleViewHolder>(FactDiffCallback()) {
+class FactsAdapter(
+    factDiffCallback: FactDiffCallback,
+    private val dateFormatter: DateFormatter
+) : ListAdapter<Fact, TitleAndSubtitleViewHolder>(factDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TitleAndSubtitleViewHolder {
         val binding = RowTitleSubtitleBinding.inflate(
@@ -19,7 +22,7 @@ class FactsAdapter : ListAdapter<Fact, TitleAndSubtitleViewHolder>(FactDiffCallb
         val fact = getItem(position)
         holder.apply {
             title = fact.content
-            subtitle = DateFormatter().format(fact.updatedDate)
+            subtitle = dateFormatter.format(fact.updatedDate)
         }
     }
 }

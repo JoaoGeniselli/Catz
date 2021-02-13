@@ -1,12 +1,13 @@
 package com.learning.catz.facts
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class FactsViewModel : ViewModel(), LifecycleObserver {
-
-    private val storage = FactsRepository()
+class FactsViewModel(
+    private val storage: FactsRepository
+) : ViewModel(), LifecycleObserver {
 
     private val _facts = MutableLiveData<List<Fact>>()
     val facts: LiveData<List<Fact>> get() = _facts
@@ -18,8 +19,13 @@ class FactsViewModel : ViewModel(), LifecycleObserver {
     private fun init() {
         _loading.value = true
         viewModelScope.launch {
-            _loading.value = false
-            storage.facts.collect { _facts.value = it }
+            requestCuriousities()
         }
+    }
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    suspend fun requestCuriousities(){
+        storage.facts.collect { _facts.value = it }
+        _loading.value = false
     }
 }
