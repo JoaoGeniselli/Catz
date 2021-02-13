@@ -54,6 +54,14 @@ dependencies {
     implementation generalDeps.retrofitGsonConverter
 
     // Unit Test
+    testImplementation testImplementationDependencies.mockk
+    testImplementation testImplementationDependencies.mockito
+    testImplementation testImplementationDependencies.mockitoKotlin
+    testImplementation testImplementationDependencies.powermock
+    testImplementation testImplementationDependencies.powermockRule
+    testImplementation testImplementationDependencies.powermockito
+
+    testImplementation testImplementationDependencies.coreTest
     testImplementation testImplementationDependencies.junit5
     androidTestImplementation testImplementationDependencies.junit4
     androidTestImplementation androidTestImplementationDependencies.espresso

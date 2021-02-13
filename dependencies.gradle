@@ -27,6 +27,7 @@ def constraintLayoutVersion = '2.0.4'
 //
 // Test Dependencies
 //
+def coreTest = '2.1.0'
 def junit5Version = '4.13.1'
 def junit4Version = '1.1.2'
 def runnerVersion = '1.2.0'
@@ -56,6 +57,7 @@ ext.generalDeps = [
 ]
 
 ext.testImplementationDependencies = [
+        coreTest                 : "androidx.arch.core:core-testing:$coreTest",
         junit5                   : "junit:junit:$junit5Version",
         junit4                   : "androidx.test.ext:junit:$junit4Version",
         koinTests                : "org.koin:koin-test:$koinVersion",
